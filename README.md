@@ -71,7 +71,7 @@ A queue foi implementada para ser genérica.
 
 ## Como executar:
 - 1º Baixe e descompacte o código;
-- 2º No terminal linux, execute: make.
+- 2º No terminal, execute: make e ./make
   
 ## Criadores:
 - Allicia Rocha
