@@ -1,0 +1,162 @@
+// SIMULAÇÃO DE EXAMES DE RAIO-X E DIAGNÓSTICO
+
+/*
+1 - GERAÇÃO DE PACIENTE
+
+  - ajustar probabilidade de 20% de chegar pacientes ao hospital
+  - chegando o paciente, recebe seus dados, adiciona em uma struct Patient
+  - salva essa struct em db_patient.txt
+
+
+  - verifica se há alguma máquina disponível, se tiver aloca o paciente
+  - se não tiver, aloca ele na PatientQueue
+
+  - atualiza o tempo de análise da máquina
+  - se máquina livre, guarda o paciente atendido e libera a vaga
+  - percorre cada máquina para acessar os pacientes atendidos
+  - se tiver paciente atendido, cria o exame do paciente
+  - salva a struct Exam em db_exam.txt
+  - destrói struct Patient criada
+
+  - insere exame do paciente na fila de prioridades dos exames
+  - atualiza a fila de prioridade dos exames
+
+  - verifica se o médico está livre
+  - se estiver livre, atende o primeiro da fila de prioridade
+  - se não estiver livre, atualiza tempo de atendimento do médico
+  - se acabar atendimento, guarda o paciente diagnosticado e libera a vaga
+  - gera o diagnóstico do paciente do médico e guarda em diagnostico_anterior
+  - acessa ponteiro para o exame do paciente atendido pelo médico
+  - cria o report e preenche com os dados e diagnóstico médico
+  - salva o report em db_report.txt
+*/
+
+struct Pathology{
+	char *nome;
+	int prioridade;
+	int quant_diagnostico;
+	int tempo_medio_espera;
+};
+
+
+struct medico{
+	int tempo_atendimento;
+	int disponibilidade;
+	Patient *paciente_em_consulta;
+	Patinet *paciente_diagnosticado;
+};
+
+struct Maquina{
+	int xr_id;
+	int tempo_de_atendimento;
+	Maquina *proxima;
+	Exam *paciente_atendido;
+	Exam *paciente_em_atendimento;
+};
+
+
+struct Patient{
+	int id;
+	char *nome;
+	int timestamp;
+};
+
+struct Exam{
+	int id;
+	int xr_id;
+	int patient_id;
+	char *condition_ia;
+};
+
+struct Report{
+	int id;
+	int exam_id;
+	char *diagnostic;
+	int timestamp;
+};
+
+// antes de entrar no loop, cria lista de máquinas
+// cria struct médico
+
+// para tudo no código : 1 = True ; 0 = False
+
+
+for (int i = 0; i < 10; i++)){
+  if (rand() % 100 < 20){
+    printf("Chegou paciente");
+
+    - pega data de nascimento
+    - pega nome
+    - pega id (é o contador atual)
+
+    paciente = create_patient(id, nome, data_nascimento);
+	exame = create_exam(int id, int patient_id, int rx_id, char *condition_ia, int priority, int tempo_fila_prioridade)
+
+    database_patient_add(paciente);
+	destroy_patient(paciente)
+	
+	
+	//verifica se todas as máquinas estão vazias
+	if (maquina_vazia == 1){
+		printf("todas as máquinas estão vazias")
+	}
+	else{
+		atualiza_tempo_maquinas(cabeca_maquinas)
+	}
+	
+	
+    // verificação se há máquina livre para alocação
+    if (maquina_livre == 1){
+        printf("há máquina livre para uso");
+		maquina_livre = encontrar_maquina(cabeca_maquinas);
+        aloca_paciente_maquina(maquina_livre, exame);
+		printf("Paciente %d em exame", exame->patient_id)
+    }
+    else{
+		q_enqueue(exame);
+    }
+	
+	
+	// função para percorrer máquinas e ver se tem paciente atendido
+	Maquina *maquina_atual = cabeca_maquinas;
+	while (maquina_atual != NULL){
+		if (maquina_atual->paciente_ja_atendido != NULL){
+			gerar_diagnostico_IA(exame); // é modificado diretamente pela função o exame com condição e prioridade
+			insere_fila_prioridade(exame);
+		}
+		maquina_atual = maquina_atual->proxima;
+	}
+	
+	
+	//verifica se fila de prioridade está vazia
+	if (fila_prioridade_vazia() == 1){
+		printf("fila de prioridade vazia");
+	}
+	else{
+		//verifica se o médico está ocupado
+		if (medico->disponibilidade == 1){
+			paciente_a_atender = retira_primeiro_fila();
+			
+			medico->tempo_atendimento = 30;
+			medico->paciente_diagnosticado = medico->paciente_em_consulta;
+			medido->paciente_em_consulta = paciente_a_atender;
+			medico->disponibilidade = 0;
+		}
+		else{
+			atualiza_tempo_medico_e_filaP();
+			if (medico->paciente_diagnosticado != NULL){
+				report = create_report();
+				diagnostico = medico->paciente_diagnosticado->condition_ia;
+				
+				p = gera_p();
+				
+				if (p < 0.8){
+					report->condition = diagnostico;	
+				}
+				gerar_diagnostico_IA();
+				while ()
+			}
+		}
+	}
+  }
+}
