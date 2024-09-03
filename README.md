@@ -1,7 +1,7 @@
 # Simulação de Realização de Exames de Raio-X
 Este trabalho prático de programação visa simular o processo de exames de raio-X de tórax e diagnóstico em um hospital, com foco na organização das filas em diferentes etapas. Pacientes chegam ao hospital e são atendidos conforme a disponibilidade dos equipamentos. Uma IA sugere diagnósticos preliminares, e os exames são encaminhados para laudo médico.
 
-## Arquivos do código
+## Principais arquivos
 ### `Patient`
 #### Estrutura `Patient`
 | Variáveis | Tipo |Função |
@@ -55,15 +55,16 @@ Este trabalho prático de programação visa simular o processo de exames de rai
 #### Estrutura `QueueNode`
 | Variáveis | Tipo |Função |
 | :---:        |     :---:      | :---: |
-| info   | void* | Ponteiro que aponta para alguma estrutura  |
+| info   | Exam* | Ponteiro que aponta para algum exame  |
 | next | QueueNode* | Ponteiro que o próximo nó da fila  |
 
-#### Funções do `Queue` 
+#### Funções do `Queue`
+A queue foi implementada para ser genérica.
 | Funções | Descrição | Parâmetros | Retorna |
 |:---:|:---:|:---:|:---:|
 | q_create | Cria uma fila | void | Queue* |
 | q_is_empty | Verifica se a fila está vazia | Queue *q | int |
-| q_enqueue | Adiciona um novo paciente na fila | Queue *q, Exam *exam | void |
+| q_enqueue | Adiciona um novo paciente na fila | Queue *q,  StructType type, void *p | void |
 | q_dequeue | Remove um paciente na fila | Queue *q | void |
 | q_free | Liberar memória alocada para criar fila | Queue *q | void |
 | q_print| Conta o número de máquinas livres | Queue *q | void |
