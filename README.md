@@ -55,7 +55,7 @@ Este trabalho prático de programação visa simular o processo de exames de rai
 #### Estrutura `QueueNode`
 | Variáveis | Tipo |Função |
 | :---:        |     :---:      | :---: |
-| info   | Exam* | Ponteiro que aponta para algum exame  |
+| info   | void* | Ponteiro que aponta para alguma estrutura  |
 | next | QueueNode* | Ponteiro que o próximo nó da fila  |
 
 #### Funções do `Queue` 
